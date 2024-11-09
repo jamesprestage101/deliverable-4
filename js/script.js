@@ -25,6 +25,22 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Allow modal opening via Enter key for images with onclick event
+    document.querySelectorAll('img[onclick]').forEach((img) => {
+        img.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                const onClickAttr = img.getAttribute('onclick');
+                if (onClickAttr) {
+                    const matches = onClickAttr.match(/toggleModal\('(.*)', '(.*)', event\)/);
+                    if (matches) {
+                        const [_, src, alt] = matches;
+                        toggleModal(src, alt, event);
+                    }
+                }
+            }
+        });
+    });
+
     // Show or hide the back-to-top button based on scroll
     window.addEventListener('scroll', function () {
         if (window.pageYOffset > 300 && modal.style.display !== 'block') {
