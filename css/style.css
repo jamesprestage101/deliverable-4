@@ -1,0 +1,355 @@
+/* All code not discussed in class reference on writeup (see README) */
+
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --link-color: #333333;
+  --table-bg-color: #f9f9f9;
+  --event-bg-color: #ffffff;
+  --button-bg-color: #555555;
+  --button-text-color: #ffffff;
+  --navbar-bg-color: #222222;
+  --navbar-text-color: #ffffff;
+  --border-color: #dddddd;
+  --event-border-color: #e0e0e0;
+  --medal-bg-gold: #ffd700;
+  --medal-bg-silver: #c0c0c0;
+  --medal-bg-bronze: #cd7f32;
+  --podium-text-color: #000000;
+  --modal-caption-color: #ffffff;
+  --modal-bg-color: rgba(0, 0, 0, 0.8);
+  --event-gap: 20px;
+  --row-odd-bg-color: #f9f9f9;
+  --row-even-bg-color: #ffffff;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: var(--navbar-bg-color);
+  color: var(--navbar-text-color);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.navbar a {
+  color: var(--navbar-text-color);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+.event-list {
+  display: none;
+}
+
+main {
+  padding: 10px;
+  margin-top: 60px;
+  text-align: center;
+}
+
+main h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* Event Section */
+.event {
+  background-color: var(--event-bg-color);
+  padding: 15px;
+  margin-bottom: var(--event-gap);
+  border: 1px solid var(--event-border-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.event h2 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.event:hover {
+  transform: scale(1.01);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+:target {
+  scroll-margin-top: 70px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .event {
+      transition: none;
+      box-shadow: none;
+  }
+
+  .event:hover {
+      transform: none;
+      box-shadow: none;
+  }
+}
+
+/* Podium */
+.podium {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  margin: 20px 0;
+  gap: 10px;
+}
+
+.podium div {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  color: var(--podium-text-color);
+  background-color: var(--event-bg-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.podium .second-place {
+  background-color: var(--medal-bg-silver);
+  order: 1;
+}
+
+.podium .first-place {
+  background-color: var(--medal-bg-gold);
+  order: 2;
+}
+
+.podium .third-place {
+  background-color: var(--medal-bg-bronze);
+  order: 3;
+}
+
+/* Athlete Table */
+.athlete-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.athlete-table th,
+.athlete-table td {
+  border: 1px solid var(--border-color);
+  padding: 10px;
+  text-align: left;
+}
+
+.athlete-table th {
+  background-color: var(--table-bg-color);
+}
+
+.athlete-table tr:nth-child(odd) {
+  background-color: var(--row-odd-bg-color);
+}
+
+.athlete-table tr:nth-child(even) {
+  background-color: var(--row-even-bg-color);
+}
+
+/* Image Modal preview */
+.athlete-table img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+}
+
+#back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: none;
+  transition: background-color 0.3s;
+  z-index: 1000;
+}
+
+#back-to-top:hover {
+  background-color: var(--button-bg-color-hover, #777777);
+}
+
+/* Table Grid on Mobile */
+@media not all and (min-width: 769px) {
+  .athlete-table {
+      display: grid;
+      grid-template-columns: 1fr;
+  }
+
+  .athlete-table tr {
+      display: contents;
+  }
+
+  .athlete-table th {
+      display: none;
+  }
+
+  .athlete-table td {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px;
+  }
+
+  .athlete-table td::before {
+      content: attr(data-label);
+      font-weight: bold;
+      flex-basis: 50%;
+      color: var(--text-color);
+      text-align: left;
+      padding-right: 10px;
+  }
+
+  .athlete-table tr:nth-child(odd) td {
+      background-color: var(--row-odd-bg-color);
+  }
+
+  .athlete-table tr:nth-child(even) td {
+      background-color: var(--row-even-bg-color);
+  }
+
+  .athlete-table img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+  }
+}
+
+/* Modal Styling */
+#image-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--modal-bg-color);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.modal-content {
+  object-fit: contain;
+  max-width: 75%;
+  max-height: 75%;
+  margin: auto;
+}
+
+#modal-caption {
+  text-align: center;
+  color: var(--modal-caption-color);
+  padding: 10px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+@media (min-width: 768px) {
+  .event-list {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 100%;
+      background-color: var(--bg-color);
+      border-right: 1px solid var(--border-color);
+      padding: 40px;
+      overflow-y: auto;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .event-list ul {
+      list-style-type: none;
+      padding: 0;
+  }
+
+  .event-list li {
+      margin: 10px 0;
+  }
+
+  .event-list a {
+      text-decoration: none;
+      color: var(--link-color);
+      display: block;
+      padding: 10px;
+      background-color: var(--event-bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      transition: background-color 0.3s, transform 0.3s;
+  }
+
+  .event-list a:hover {
+      background-color: var(--table-bg-color);
+      transform: scale(1.03);
+  }
+
+  main {
+      margin-left: 270px;
+      padding: 20px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+      --bg-color: #1e1e1e;
+      --text-color: #f0f0f0;
+      --link-color: #f6cc22;
+      --table-bg-color: #2c2c2c;
+      --event-bg-color: #333333;
+      --button-bg-color: #444444;
+      --button-text-color: #ffffff;
+      --navbar-bg-color: #121212;
+      --modal-bg-color: #ffffffcc;
+      --border-color: #444444;
+      --event-border-color: #555555;
+      --medal-bg-gold: #ffd700;
+      --medal-bg-silver: #c0c0c0;
+      --medal-bg-bronze: #cd7f32;
+      --podium-text-color: #000000;
+      --modal-caption-color: #000000;
+      --row-odd-bg-color: #3a3a3a;
+      --row-even-bg-color: #2c2c2c;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .athlete-table a {
+      color: #f6cc22 !important;
+  }
+}
