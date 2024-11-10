@@ -1,4 +1,7 @@
+/* All code not discussed in class reference on writeup (see README) */
+
 :root {
+  /* --- Color Variables --- */
   --bg-color: #ffffff;
   --text-color: #000000;
   --link-color: #333333;
@@ -23,6 +26,7 @@
   --row-even-bg-color: #ffffff;
 }
 
+/* --- Global Styling --- */
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
@@ -31,11 +35,13 @@ body {
   padding: 0;
 }
 
+/* --- Header Styling --- */
 header {
   background-color: var(--navbar-bg-color);
   padding: 10px 0;
 }
 
+/* --- Navbar Styling --- */
 .navbar {
   background-color: var(--navbar-bg-color);
   color: var(--navbar-text-color);
@@ -51,7 +57,7 @@ header {
   z-index: 1000;
 }
 
-/* Updated Navbar Links */
+/* --- Navbar Links --- */
 .navbar a {
   color: #000000;
   text-decoration: none;
@@ -75,13 +81,15 @@ header {
 }
 
 .navbar a:active {
-  background-color: var(--navbar-active-bg); 
+  background-color: var(--navbar-active-bg);
 }
 
+/* --- Event List Styling (hidden on mobile, this can optionally be uncommented but looks better without it) --- */
 .event-list {
   display: none;
 }
 
+/* --- Main Section Styling --- */
 main {
   padding: 10px;
   margin-top: 70px;
@@ -93,6 +101,7 @@ main h1 {
   margin-bottom: 20px;
 }
 
+/* --- Event Card Styling --- */
 .event {
   background-color: var(--event-bg-color);
   padding: 15px;
@@ -113,10 +122,12 @@ main h1 {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* --- Smooth Scrolling to Anchor --- */
 :target {
   scroll-margin-top: 70px;
 }
 
+/* --- Motion Preferences for Reduced Motion --- */
 @media (prefers-reduced-motion: reduce) {
   .event {
     transition: none;
@@ -129,6 +140,7 @@ main h1 {
   }
 }
 
+/* --- Podium Section Styling --- */
 .podium {
   display: flex;
   justify-content: space-evenly;
@@ -167,6 +179,7 @@ main h1 {
   order: 3;
 }
 
+/* --- Athlete Table Styling --- */
 .athlete-table {
   width: 100%;
   border-collapse: collapse;
@@ -200,6 +213,7 @@ main h1 {
   border: 2px solid var(--border-color);
 }
 
+/* --- Back to Top Button Styling --- */
 #back-to-top {
   position: fixed;
   bottom: 20px;
@@ -219,6 +233,7 @@ main h1 {
   background-color: var(--button-bg-color-hover, #777777);
 }
 
+/* --- Responsive Athlete Table for Smaller Screens --- */
 @media not all and (min-width: 769px) {
   .athlete-table {
     display: grid;
@@ -265,6 +280,7 @@ main h1 {
   }
 }
 
+/* --- Image Modal Styling --- */
 #image-modal {
   display: none;
   position: fixed;
@@ -293,6 +309,7 @@ main h1 {
   word-wrap: break-word;
 }
 
+/* --- Sidebar Event List Styling for Larger Screens --- */
 @media (min-width: 768px) {
   .event-list {
     display: block;
@@ -340,6 +357,7 @@ main h1 {
   }
 }
 
+/* --- Dark Mode Styling --- */
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #1e1e1e;
@@ -375,8 +393,9 @@ main h1 {
   }
 }
 
+/* --- Athlete Table Dark Mode Links --- */
 @media (prefers-color-scheme: dark) {
   .athlete-table a {
-      color: #f6cc22 !important;
+    color: #f6cc22 !important;
   }
 }
