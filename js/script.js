@@ -25,7 +25,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Allow modal opening via Enter key for images with onclick event
+    // This allows modal opening via Enter key for images with onclick event
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
     document.querySelectorAll('img[onclick]').forEach((img) => {
         img.addEventListener('keydown', function (event) {
             if (event.key === 'Enter') {
@@ -50,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Back to top button with smooth scrolling
     backToTopButton.addEventListener('click', function () {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (prefersReducedMotion) {

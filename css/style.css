@@ -1,3 +1,5 @@
+/* All code not taught in class is referenced in writeup */
+
 :root {
   --bg-color: #ffffff;
   --text-color: #000000;
@@ -31,6 +33,7 @@ body {
   padding: 0;
 }
 
+/* Navbar Section */
 header {
   background-color: var(--navbar-bg-color);
   padding: 10px 0;
@@ -51,37 +54,33 @@ header {
   z-index: 1000;
 }
 
-/* Updated Navbar Links */
 .navbar a {
-  color: #000000; /* Ensure all navbar link text is black */
+  color: #000000;
   text-decoration: none;
   font-weight: bold;
   padding: 8px 15px;
-  margin: 0 5px; /* Spacing between links */
-  border-radius: 5px; /* Rounded corners */
+  margin: 0 5px;
+  border-radius: 5px;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .navbar a:nth-child(odd) {
-  background-color: #ffffff; /* White background for odd links */
+  background-color: #ffffff;
 }
 
 .navbar a:nth-child(even) {
-  background-color: #dcdcdc; /* Light gray background for even links */
+  background-color: #dcdcdc;
 }
 
 .navbar a:hover {
-  background-color: var(--navbar-hover-bg); /* Highlight on hover */
+  background-color: var(--navbar-hover-bg);
 }
 
 .navbar a:active {
-  background-color: var(--navbar-active-bg); /* Slightly darker when active */
+  background-color: var(--navbar-active-bg);
 }
 
-.event-list {
-  display: none;
-}
-
+/* Main Content Section */
 main {
   padding: 10px;
   margin-top: 70px;
@@ -93,6 +92,7 @@ main h1 {
   margin-bottom: 20px;
 }
 
+/* Event Section */
 .event {
   background-color: var(--event-bg-color);
   padding: 15px;
@@ -129,6 +129,7 @@ main h1 {
   }
 }
 
+/* Podium Section */
 .podium {
   display: flex;
   justify-content: space-evenly;
@@ -167,6 +168,7 @@ main h1 {
   order: 3;
 }
 
+/* Athlete Table Section */
 .athlete-table {
   width: 100%;
   border-collapse: collapse;
@@ -200,6 +202,7 @@ main h1 {
   border: 2px solid var(--border-color);
 }
 
+/* Back to Top Button Section */
 #back-to-top {
   position: fixed;
   bottom: 20px;
@@ -219,52 +222,7 @@ main h1 {
   background-color: var(--button-bg-color-hover, #777777);
 }
 
-@media not all and (min-width: 769px) {
-  .athlete-table {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
-  .athlete-table tr {
-    display: contents;
-  }
-
-  .athlete-table th {
-    display: none;
-  }
-
-  .athlete-table td {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px;
-  }
-
-  .athlete-table td::before {
-    content: attr(data-label);
-    font-weight: bold;
-    flex-basis: 50%;
-    color: var(--text-color);
-    text-align: left;
-    padding-right: 10px;
-  }
-
-  .athlete-table tr:nth-child(odd) td {
-    background-color: var(--row-odd-bg-color);
-  }
-
-  .athlete-table tr:nth-child(even) td {
-    background-color: var(--row-even-bg-color);
-  }
-
-  .athlete-table img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-}
-
+/* Modal Section */
 #image-modal {
   display: none;
   position: fixed;
@@ -289,10 +247,10 @@ main h1 {
   text-align: center;
   color: var(--modal-caption-color);
   padding: 10px;
-  max-width: 80%;
   word-wrap: break-word;
 }
 
+/* Sidebar Section */
 @media (min-width: 768px) {
   .event-list {
     display: block;
@@ -340,6 +298,7 @@ main h1 {
   }
 }
 
+/* Dark Mode Section */
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #1e1e1e;
@@ -377,6 +336,6 @@ main h1 {
 
 @media (prefers-color-scheme: dark) {
   .athlete-table a {
-      color: #f6cc22 !important;
+    color: #f6cc22 !important;
   }
 }

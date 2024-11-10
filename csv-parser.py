@@ -40,9 +40,6 @@ html_footer = """
     <!-- Back to Top Button -->
     <button id="back-to-top" tabindex="0" style="display:none;">Back to Top</button>
     </main>
-    <footer>
-        <p>&copy; 2024 Athletic Events. All rights reserved.</p>
-    </footer>
 </body>
 </html>
 """
@@ -145,7 +142,7 @@ def create_event_sections(gender=None):
             """
     return sections
 
-# Generate HTML pages
+# Generate HTML pages for event summaries
 pages = [("results.html", "All 2024 Event Summaries", None),
          ("mens_results.html", "&#9794; Men's Event Summaries", "Men"),
          ("womens_results.html", "&#9792; Women's Event Summaries", "Women")]
@@ -185,3 +182,49 @@ for filename, title, gender_filter in pages:
         file.write(html_content)
 
     print(f'{filename} generated successfully.')
+
+# Generate the homepage
+# Create a basic homepage (index.html)
+homepage_content = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Athletic Events 2024</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="index.html">Home Page</a>
+            <a href="results.html">All Events</a>
+            <a href="mens_results.html">Men's Events</a>
+            <a href="womens_results.html">Women's Events</a>
+        </nav>
+    </header>
+    <main>
+        <section class="welcome">
+            <img src="images/athletic_logo.png" alt="Athletic Logo" class="logo">
+            <h1>Welcome to Athletic Events 2024</h1>
+            <p>Using this website you can track all 2024 athletic event summaries - and also filter by gender!</p>
+            <nav>
+                <ul>
+                    <li><a href="results.html">Explore All Events</a></li>
+                    <li><a href="mens_results.html">Men's Event Results</a></li>
+                    <li><a href="womens_results.html">Women's Event Results</a></li>
+                </ul>
+            </nav>
+        </section>
+    </main>
+</body>
+</html>
+"""
+
+# Write the content to index.html
+with open("index.html", "w") as file:
+    file.write(homepage_content)
+
+print("index.html generated successfully.")
