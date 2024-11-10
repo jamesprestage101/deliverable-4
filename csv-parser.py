@@ -21,7 +21,7 @@ html_header = """
     <header>
         <!-- Top Navbar -->
         <nav class="navbar" aria-label="Main navigation">
-            <a href="index.html">Home</a>
+            <a href="index.html">Home Page</a>
             <a href="results.html">All Events</a>
             <a href="mens_results.html">Men's Events</a>
             <a href="womens_results.html">Women's Events</a>

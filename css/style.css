@@ -8,6 +8,8 @@
   --button-text-color: #ffffff;
   --navbar-bg-color: #222222;
   --navbar-text-color: #ffffff;
+  --navbar-hover-bg: #444444;
+  --navbar-active-bg: #555555;
   --border-color: #dddddd;
   --event-border-color: #e0e0e0;
   --medal-bg-gold: #ffd700;
@@ -49,14 +51,31 @@ header {
   z-index: 1000;
 }
 
+/* Updated Navbar Links */
 .navbar a {
-  color: var(--navbar-text-color);
+  color: #000000; /* Ensure all navbar link text is black */
   text-decoration: none;
   font-weight: bold;
+  padding: 8px 15px;
+  margin: 0 5px; /* Spacing between links */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar a:nth-child(odd) {
+  background-color: #ffffff; /* White background for odd links */
+}
+
+.navbar a:nth-child(even) {
+  background-color: #dcdcdc; /* Light gray background for even links */
 }
 
 .navbar a:hover {
-  text-decoration: underline;
+  background-color: var(--navbar-hover-bg); /* Highlight on hover */
+}
+
+.navbar a:active {
+  background-color: var(--navbar-active-bg); /* Slightly darker when active */
 }
 
 .event-list {
@@ -100,13 +119,13 @@ main h1 {
 
 @media (prefers-reduced-motion: reduce) {
   .event {
-      transition: none;
-      box-shadow: none;
+    transition: none;
+    box-shadow: none;
   }
 
   .event:hover {
-      transform: none;
-      box-shadow: none;
+    transform: none;
+    box-shadow: none;
   }
 }
 
@@ -202,47 +221,47 @@ main h1 {
 
 @media not all and (min-width: 769px) {
   .athlete-table {
-      display: grid;
-      grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: 1fr;
   }
 
   .athlete-table tr {
-      display: contents;
+    display: contents;
   }
 
   .athlete-table th {
-      display: none;
+    display: none;
   }
 
   .athlete-table td {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
   }
 
   .athlete-table td::before {
-      content: attr(data-label);
-      font-weight: bold;
-      flex-basis: 50%;
-      color: var(--text-color);
-      text-align: left;
-      padding-right: 10px;
+    content: attr(data-label);
+    font-weight: bold;
+    flex-basis: 50%;
+    color: var(--text-color);
+    text-align: left;
+    padding-right: 10px;
   }
 
   .athlete-table tr:nth-child(odd) td {
-      background-color: var(--row-odd-bg-color);
+    background-color: var(--row-odd-bg-color);
   }
 
   .athlete-table tr:nth-child(even) td {
-      background-color: var(--row-even-bg-color);
+    background-color: var(--row-even-bg-color);
   }
 
   .athlete-table img {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
-      border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
   }
 }
 
@@ -276,70 +295,83 @@ main h1 {
 
 @media (min-width: 768px) {
   .event-list {
-      display: block;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 250px;
-      height: 100%;
-      background-color: var(--bg-color);
-      border-right: 1px solid var(--border-color);
-      padding: 40px;
-      overflow-y: auto;
-      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: block;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 250px;
+    height: calc(100% - 70px);
+    background-color: var(--bg-color);
+    border-right: 1px solid black;
+    padding: 20px;
+    overflow-y: auto;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   }
 
   .event-list ul {
-      list-style-type: none;
-      padding: 0;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
   }
 
   .event-list li {
-      margin: 10px 0;
+    margin: 10px 0;
   }
 
   .event-list a {
-      text-decoration: none;
-      color: var(--link-color);
-      display: block;
-      padding: 10px;
-      background-color: var(--event-bg-color);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      transition: background-color 0.3s, transform 0.3s;
+    text-decoration: none;
+    color: var(--link-color);
+    display: block;
+    padding: 10px;
+    background-color: var(--event-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.3s;
   }
 
   .event-list a:hover {
-      background-color: var(--table-bg-color);
-      transform: scale(1.03);
+    background-color: var(--table-bg-color);
+    transform: scale(1.03);
   }
 
   main {
-      margin-left: 270px;
-      padding: 20px;
+    margin-left: 270px;
+    padding: 20px;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-      --bg-color: #1e1e1e;
-      --text-color: #f0f0f0;
-      --link-color: #f6cc22;
-      --table-bg-color: #2c2c2c;
-      --event-bg-color: #333333;
-      --button-bg-color: #444444;
-      --button-text-color: #ffffff;
-      --navbar-bg-color: #121212;
-      --modal-bg-color: #ffffffcc;
-      --border-color: #444444;
-      --event-border-color: #555555;
-      --medal-bg-gold: #ffd700;
-      --medal-bg-silver: #c0c0c0;
-      --medal-bg-bronze: #cd7f32;
-      --podium-text-color: #000000;
-      --modal-caption-color: #000000;
-      --row-odd-bg-color: #3a3a3a;
-      --row-even-bg-color: #2c2c2c;
+    --bg-color: #1e1e1e;
+    --text-color: #f0f0f0;
+    --link-color: #f6cc22;
+    --table-bg-color: #2c2c2c;
+    --event-bg-color: #333333;
+    --button-bg-color: #444444;
+    --button-text-color: #ffffff;
+    --navbar-bg-color: #121212;
+    --modal-bg-color: #ffffffcc;
+    --border-color: #444444;
+    --event-border-color: #555555;
+    --medal-bg-gold: #ffd700;
+    --medal-bg-silver: #c0c0c0;
+    --medal-bg-bronze: #cd7f32;
+    --podium-text-color: #000000;
+    --modal-caption-color: #000000;
+    --row-odd-bg-color: #3a3a3a;
+    --row-even-bg-color: #2c2c2c;
+  }
+
+  .event-list a {
+    color: #f6cc22;
+  }
+
+  .event-list a:hover {
+    background-color: #2c2c2c;
+  }
+
+  .navbar a {
+    color: #000000;
   }
 }
 
